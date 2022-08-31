@@ -39,6 +39,6 @@ export const ormConfigFactory = (): DataSourceOptions => {
     },
   };
 };
-
+  //comentario teste
 // import this into your Nest app
 export const ormConfig = registerAs('TYPEORM_MODULE_CONFIG', ormConfigFactory);

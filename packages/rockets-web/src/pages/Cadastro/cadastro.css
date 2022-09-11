@@ -5,13 +5,14 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #F1F1F1;
 }
 
 .contentCadastro{
     width: 1440px;
     display: flex;
     flex-direction: row;
-    
+    background-color: #F1F1F1;
 }
 
 .formularioUmCadastro{

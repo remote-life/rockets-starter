@@ -18,7 +18,8 @@ export const FormularioContinue = ({formData, setFormData, pageForm, setFormPage
   const submitForm = (data) => {
     if(data){
         setFormPage((currPage) => currPage + 1);
-        console.log(pageForm)
+        console.log(pageForm);
+        console.log(formData);
     }
   }
 //flexwrap
@@ -30,12 +31,12 @@ export const FormularioContinue = ({formData, setFormData, pageForm, setFormPage
         <form id='usrform' className="formularioInfosWrap" onSubmit={handleSubmit(submitForm)}> 
             <div className="formsCenter">
                 <label htmlFor="" className='labelFormContinue'>Data de Nascimento</label>
-                <input className="dataNasc" {...register("dataNasc")} type="number" placeholder='xx/mm/yy' value={formData.dataNasc} onChange={(event) => setFormData({...formData, dataNasc: event.target.value})}/>
+                <input className="dataNasc" {...register("dataNasc")} type="data" placeholder='xx/mm/yy' value={formData.dataNasc} onChange={(event) => setFormData({...formData, dataNasc: event.target.value})}/>
             </div>
 
             <div className="formsCenter">
                 <label htmlFor="" className='labelFormContinue'>Número de telefone</label>
-                <input className="cel" {...register("cel")} type="number" placeholder='55 83 98888-8888' value={formData.cel} onChange={(event) => setFormData({...formData, cel: event.target.value})}/>
+                <input className="cel" {...register("cel")} type="tel" placeholder='55 83 98888-8888' value={formData.cel} onChange={(event) => setFormData({...formData, cel: event.target.value})}/>
             </div>
 
             <label htmlFor="" className='labelFormContinue'>Em que você atua?</label>

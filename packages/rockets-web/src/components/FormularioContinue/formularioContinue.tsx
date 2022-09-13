@@ -3,15 +3,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 import './formularioContinue.css';
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+
+
+
 const schema = yup.object().shape({
-  cel: yup.number().required(),
-  dataNasc: yup.date().required()
+  cel: yup.string().required("Campo obrigatório!").matches(phoneRegExp, 'Phone number is not valid'),
+  dataNasc: yup.date().required("Campo obrigatório!").typeError("invalid format")
 })
 
 
 export const FormularioContinue = ({formData, setFormData, pageForm, setFormPage}) => {
     
-  const { register, handleSubmit, clearErrors} = useForm({
+  const { register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -32,11 +37,13 @@ export const FormularioContinue = ({formData, setFormData, pageForm, setFormPage
             <div className="formsCenter">
                 <label htmlFor="" className='labelFormContinue'>Data de Nascimento</label>
                 <input className="dataNasc" {...register("dataNasc")} type="data" placeholder='xx/mm/yy' value={formData.dataNasc} onChange={(event) => setFormData({...formData, dataNasc: event.target.value})}/>
+                <p>{errors.dataNasc?.message}</p>
             </div>
 
             <div className="formsCenter">
                 <label htmlFor="" className='labelFormContinue'>Número de telefone</label>
                 <input className="cel" {...register("cel")} type="tel" placeholder='55 83 98888-8888' value={formData.cel} onChange={(event) => setFormData({...formData, cel: event.target.value})}/>
+                <p>{errors.cel?.message}</p>
             </div>
 
             <label htmlFor="" className='labelFormContinue'>Em que você atua?</label>

@@ -122,7 +122,7 @@ const Routes = () => {
       <ProtectedRoute path="/" Component={Home} />
       <PublicRoute path="/cadastro" Component={Cadastro}/>
       <PublicRoute path="/loginn" Component={LoginForm} />
-      <PublicRoute path="/login" Component={Login} />
+      <PublicRoute path="/login" Component={Login}/>
     </Router>
   );
 };

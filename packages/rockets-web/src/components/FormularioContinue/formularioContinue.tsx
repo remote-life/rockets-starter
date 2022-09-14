@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 import './formularioContinue.css';
+import { useState } from 'react';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -14,58 +15,61 @@ const schema = yup.object().shape({
 })
 
 
-export const FormularioContinue = ({formData, setFormData, pageForm, setFormPage}) => {
-    
-  const { register, handleSubmit, formState: {errors}} = useForm({
+export const FormularioContinue = ({ formData, setFormData, pageForm, setFormPage }) => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
 
   const submitForm = (data) => {
-    if(data){
-        setFormPage((currPage) => currPage + 1);
-        console.log(pageForm);
-        console.log(formData);
+    if (data) {
+      setFormPage((currPage) => currPage + 1);
+      console.log(pageForm);
+      console.log(formData);
     }
   }
-//flexwrap
-    return (
 
 
-      <div className="formularioContainer">
 
-        <form id='usrform' className="formularioInfosWrap" onSubmit={handleSubmit(submitForm)}> 
-            <div className="formsCenter">
-                <label htmlFor="" className='labelFormContinue'>Data de Nascimento</label>
-                <input className="dataNasc" {...register("dataNasc")} type="data" placeholder='xx/mm/yy' value={formData.dataNasc} onChange={(event) => setFormData({...formData, dataNasc: event.target.value})}/>
-                <p>{errors.dataNasc?.message}</p>
-            </div>
+  //<input className="dataNasc" {...register("dataNasc")} type="data" placeholder='xx/mm/yy' value={formData.dataNasc} onChange={(event) => setFormData({...formData, dataNasc: event.target.value})}/>
+  //flexwrap
+  return (
 
-            <div className="formsCenter">
-                <label htmlFor="" className='labelFormContinue'>Número de telefone</label>
-                <input className="cel" {...register("cel")} type="tel" placeholder='55 83 98888-8888' value={formData.cel} onChange={(event) => setFormData({...formData, cel: event.target.value})}/>
-                <p>{errors.cel?.message}</p>
-            </div>
+    <div className="formularioContainer">
 
-            <label htmlFor="" className='labelFormContinue'>Em que você atua?</label>
-            <input className="inputGeneralContinue" type="text" placeholder='o que você é?' />
+      <form id='usrform' className="formularioInfosWrap" onSubmit={handleSubmit(submitForm)}>
+        <div className="formsCenter">
+          <label htmlFor="" className='labelFormContinue'>Data de Nascimento</label>
+          
+          <p>{errors.dataNasc?.message}</p>
+        </div>
 
-            <label htmlFor="" className='labelFormContinue'>Quais tecnologias você domina?</label>
-            <input className="inputGeneralContinue" type="text" placeholder='Tecnologias'/>
+        <div className="formsCenter">
+          <label htmlFor="" className='labelFormContinue'>Número de telefone</label>
+          <input className="cel" {...register("cel")} type="tel" placeholder='55 83 98888-8888' value={formData.cel} onChange={(event) => setFormData({ ...formData, cel: event.target.value })} />
+          <p>{errors.cel?.message}</p>
+        </div>
 
-            <label htmlFor="" className='labelFormContinue'>Conte sobre você</label>
-            <textarea className="textArea" form='usrform'></textarea>
+        <label htmlFor="" className='labelFormContinue'>Em que você atua?</label>
+        <input className="inputGeneralContinue" type="text" placeholder='o que você é?' />
 
-            <div className="anexarCurriculo">
-              <small>Anexe seu currículo</small>
-              <button className='btnCurriculo'>Adicionar currículo</button>
-            </div>
+        <label htmlFor="" className='labelFormContinue'>Quais tecnologias você domina?</label>
+        <input className="inputGeneralContinue" type="text" placeholder='Tecnologias' />
 
-            <div className="centerBtnContinue">
-              <button type="submit" className='btnRegistrar'>Registrar</button>
-            </div>
-            
-        </form>
+        <label htmlFor="" className='labelFormContinue'>Conte sobre você</label>
+        <textarea className="textArea" form='usrform' ></textarea>
 
-      </div>
-    );
-  };
+        <div className="anexarCurriculo">
+          <small>Anexe seu currículo</small>
+          <button className='btnCurriculo'>Adicionar currículo</button>
+        </div>
+
+        <div className="centerBtnContinue">
+          <button type="submit" className='btnRegistrar'>Registrar</button>
+        </div>
+
+      </form>
+
+    </div>
+  );
+};

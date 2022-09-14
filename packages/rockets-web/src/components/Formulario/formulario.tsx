@@ -12,7 +12,7 @@ const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
     email: yup.string().email("Invalid email format").required("Campo obrigatório!").matches(emailRegExp, 'email is not valid'),
-    password: yup.string().min(4).max(15).required("Campo obrigatório!"),
+    password: yup.string().min(8).max(15).required("Campo obrigatório!"),
     passwordConfirm: yup.string().oneOf([yup.ref("password"), null]).required("Campo obrigatório!")
 })
 
